@@ -31,34 +31,35 @@ public class KinoVerwaltungV1 {
 
         while (userFilm != 0) {
             // print film table
-            System.out.println(
-                    String.format("%s %10s %12s %15s %15s", "Filmnr", "Filmname", "Uhrzeit", "Tickets",
-                            "Restplätzergs"));
+            System.out.printf(
+                    "%s %10s %12s %15s %15s", "Filmnr", "Filmname", "Uhrzeit", "Tickets",
+                    "Restplätzergs");
             System.out.println("--------------------------------------------------------------");
             for (int i = 0; i < filmData.length; i++) {
-                System.out.print(
-                        String.format("%3s %12s %12s %15s %15s", filmData[i])); /// idfk how to make compiler happy here
-                System.out.println();
+                System.out.printf(
+                        "%3s %12s %12s %15s %15s\n", filmData[i]); /// idfk how to make compiler happy here
             }
             System.out.println("--------------------------------------------------------------");
 
             // picking a film
-            System.out.println("Welchen (nicht ausgebuchten) Film möchtest du sehen? (0 zum abbrechen)");
-            userFilm = sc.nextInt();
+            do {
+                System.out.println("Welchen (nicht ausgebuchten) Film möchtest du sehen? (0 zum abbrechen)");
+                userFilm = sc.nextInt();
+            } while (userFilm > filmData.length || userFilm < 0);
 
             if (userFilm != 0) {
                 // checks for available tickets
                 availableTickets = Integer.parseInt(filmData[userFilm - 1][3]);
 
                 // buying function
-                System.out.println(String.format("%s %d %s %d %s", "Es sind noch", availableTickets,
-                        "Tickets um jeweils", ticketPrice, "€ dafür verfügbar. Wie viele möchtest du kaufen?"));
+                System.out.printf("%s %d %s %d %s", "Es sind noch", availableTickets,
+                        "Tickets um jeweils", ticketPrice, "€ dafür verfügbar. Wie viele möchtest du kaufen?");
 
                 // user input
                 userTickets = sc.nextInt();
 
                 // buying function
-                if (userTickets != 0 && userBudget >= userTickets * ticketPrice && userTickets <= availableTickets) {
+                if (userTickets >= 0 && userBudget >= userTickets * ticketPrice && userTickets <= availableTickets) {
 
                     // money shift
                     userBudget = userBudget - userTickets * ticketPrice;
@@ -77,11 +78,11 @@ public class KinoVerwaltungV1 {
                     }
 
                     // formatted print for user
-                    System.out.println(
-                            String.format("%s %d %s %d %s %d %s", "Du kaufst", userTickets, "Tickets um",
-                                    userTickets * ticketPrice, "€ und hast jetzt noch",
-                                    userBudget,
-                                    "€."));
+                    System.out.printf(
+                            "%s %d %s %d %s %d %s", "Du kaufst", userTickets, "Tickets um",
+                            userTickets * ticketPrice, "€ und hast jetzt noch",
+                            userBudget,
+                            "€.");
                 } else if (userBudget < userTickets * ticketPrice) {
                     System.out.println("Du hast nicht genug Geld mit!");
                 } else {
