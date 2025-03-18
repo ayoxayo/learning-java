@@ -37,7 +37,7 @@ public class KinoVerwaltungV1 {
             System.out.println("--------------------------------------------------------------");
             for (int i = 0; i < filmData.length; i++) {
                 System.out.printf(
-                        "%3s %12s %12s %15s %15s\n", filmData[i]); /// idfk how to make compiler happy here
+                        "%3s %12s %12s %15s %15s\n", (Object[]) filmData[i]); /// idfk how to make compiler happy here
             }
             System.out.println("--------------------------------------------------------------");
 
@@ -51,7 +51,7 @@ public class KinoVerwaltungV1 {
                 // checks for available tickets
                 availableTickets = Integer.parseInt(filmData[userFilm - 1][3]);
 
-                // buying function
+                // asking for user input
                 System.out.printf("%s %d %s %d %s", "Es sind noch", availableTickets,
                         "Tickets um jeweils", ticketPrice, "€ dafür verfügbar. Wie viele möchtest du kaufen?");
 

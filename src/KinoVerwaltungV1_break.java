@@ -39,7 +39,8 @@ public class KinoVerwaltungV1_break {
             System.out.println("--------------------------------------------------------------");
             for (int i = 0; i < filmData.length; i++) {
                 System.out.print(
-                        String.format("%3s %12s %12s %15s %15s", filmData[i])); /// idfk how to make compiler happy here
+                        String.format("%3s %12s %12s %15s %15s",
+                                (Object[]) filmData[i])); /// idfk how to make compiler happy here
                 System.out.println();
             }
             System.out.println("--------------------------------------------------------------");
