@@ -128,7 +128,7 @@ public class KinoVerwaltungV2 {
                             System.out.printf("%s %s. \n", "You watched",
                                     filmData[chosenMovies.get(watchedMovies - 1) - 1][1]);
                             // change chosenMovies values
-                            chosenMovies.remove(Integer.valueOf(watchedMovies));
+                            chosenMovies.remove(watchedMovies - 1);
                         }
 
                     } else {
