@@ -36,8 +36,6 @@ public class KinoVerwaltungV1 {
                             "Restplätzergs"));
             System.out.println("--------------------------------------------------------------");
             for (int i = 0; i < filmData.length; i++) {
-                for (int j = 0; j < filmData.length; j++) {
-                }
                 System.out.print(
                         String.format("%3s %12s %12s %15s %15s", filmData[i])); /// idfk how to make compiler happy here
                 System.out.println();
