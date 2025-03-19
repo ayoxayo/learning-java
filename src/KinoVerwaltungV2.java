@@ -15,8 +15,8 @@ public class KinoVerwaltungV2 {
         } while (userBudget < 1);
 
         // set vars and arrays
-        int Operator = -1;
-        int userTickets = 0;
+        int menuOption = -1;
+        int userTickets;
         // creating the array list for persistency
         ArrayList<Integer> chosenMovies = new ArrayList<Integer>(); // make compiler happy!
         // define film table /nr, name, time, room, price, status, tickets
@@ -26,20 +26,20 @@ public class KinoVerwaltungV2 {
                 { "3.", "Matrix 2", "17:00", "2", "9.99", "available", "1" }
         };
 
-        while (Operator != 4) {
+        while (menuOption != 4) {
             do {
                 System.out.printf("%s %.2f %s \n %s \n %s \n %s \n %s ", "What do you want to do? You still have",
                         userBudget, "€ remaining.", "1. Buy tickets",
                         "2. Watch a movie", "3. Lottery!", "4. Exit");
-                Operator = sc.nextInt();
-            } while (Operator < 0 || Operator > 4);
+                menuOption = sc.nextInt();
+            } while (menuOption < 0 || menuOption > 4);
 
-            switch (Operator) {
+            switch (menuOption) {
                 case 1:
                     // init vars
-                    int userFilm = -1;
+                    int userFilm;
                     int availableTickets;
-                    double ticketPrice = 0;
+                    double ticketPrice;
 
                     // print the film array
                     System.out.printf(
@@ -112,23 +112,23 @@ public class KinoVerwaltungV2 {
                     }
                     break;
                 case 2:
-                    if (userTickets != 0) {
+                    if (!chosenMovies.isEmpty()) { // checking the array to see if it's empty
                         // checker and printer loop
                         for (int i = 0; i < chosenMovies.size(); i++) {
                             System.out.printf("%d. %s \n", i + 1, filmData[chosenMovies.get(i) - 1][1]);
                         }
 
                         // user input and validator
-                        int watchedMovies = -1;
+                        int watchedMovie = -1;
                         do {
                             System.out.println("Which one do you want to watch? (Press 0 to cancel)");
-                            watchedMovies = sc.nextInt();
-                        } while (watchedMovies > chosenMovies.size() || watchedMovies < 0 && watchedMovies != 0);
-                        if (watchedMovies != 0) {
+                            watchedMovie = sc.nextInt();
+                        } while (watchedMovie > chosenMovies.size() || watchedMovie < 0);
+                        if (watchedMovie != 0) {
                             System.out.printf("%s %s. \n", "You watched",
-                                    filmData[chosenMovies.get(watchedMovies - 1) - 1][1]);
+                                    filmData[chosenMovies.get(watchedMovie - 1) - 1][1]);
                             // change chosenMovies values
-                            chosenMovies.remove(watchedMovies - 1);
+                            chosenMovies.remove(watchedMovie - 1);
                         }
 
                     } else {
