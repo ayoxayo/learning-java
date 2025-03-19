@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class CybersecurityV1 {
+public class CyberSecurityV1 {
     public static void main(String[] args) {
         Random r = new Random();
         Scanner sc = new Scanner(System.in);
@@ -17,6 +17,19 @@ public class CybersecurityV1 {
         // user input
         System.out.println("Input password length");
         passwordLength = sc.nextInt();
+
+        /// testxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+        // String Crack = "";
+
+        // for (int i = 0; i < passwordLength; i++) {
+        // char Random = validCharacters[0 + i];
+        // Crack += Random;
+        // }
+        // System.out.println(Crack);
+
+        // /test xxxxxxxxxxxxxxxxxxxxxxxxc
+
         System.out.println("How many passwords do you want to crack?");
         howManyPasswords = sc.nextInt();
 
@@ -67,9 +80,9 @@ public class CybersecurityV1 {
         }
 
         // print the results
-        System.out.println("max is: " + max);
-        System.err.println("min is: " + min);
-        System.out.println("average: " + sum / attempts.size());
+        System.out.println("The worst case scenario is: " + max);
+        System.err.println("The best case scenario is: " + min);
+        System.out.println("The average is: " + sum / attempts.size());
 
         sc.close();
     }
