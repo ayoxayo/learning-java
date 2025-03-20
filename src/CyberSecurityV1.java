@@ -1,40 +1,19 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class CyberSecurityV1 {
     public static void main(String[] args) {
         Random r = new Random();
-        Scanner sc = new Scanner(System.in);
 
         // inits
-        int passwordLength;
-        int howManyPasswords;
+        int passwordLength = 4;
+        int howManyPasswords = 10;
         int attempt;
         char[] validCharacters = { 'A', 'B', 'C', 'a', 'b', 'c', '0', '1', '2', '!' };
         ArrayList<Integer> attempts = new ArrayList<>();
 
-        // user input
-        System.out.println("Input password length");
-        passwordLength = sc.nextInt();
-
-        /// testxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-        // String Crack = "";
-
-        // for (int i = 0; i < passwordLength; i++) {
-        // char Random = validCharacters[0 + i];
-        // Crack += Random;
-        // }
-        // System.out.println(Crack);
-
-        // /test xxxxxxxxxxxxxxxxxxxxxxxxc
-
-        System.out.println("How many passwords do you want to crack?");
-        howManyPasswords = sc.nextInt();
-
         // password gen and crack loop
-        for (int i = 0; i < howManyPasswords; i++) {
+        for (int h = 0; h < howManyPasswords; h++) {
 
             // password gen
             String password = "";
@@ -46,20 +25,39 @@ public class CyberSecurityV1 {
             // crack and attempt counter loop
             boolean found = false;
             attempt = 1;
+            String crack;
             while (!found) {
                 // crack gen
-                String crack = "";
-                for (int j = 0; j < passwordLength; j++) {
-                    char random = validCharacters[r.nextInt(0, 10)];
-                    crack += random;
-                }
-                // checker
-                if (crack.equals(password)) {
-                    System.out.println("Found: " + password + " == " + crack);
-                    found = true;
-                    attempts.add(attempt);
-                } else {
-                    attempt++;
+                crack = "";
+                for (int i = 0; i < validCharacters.length; i++) {
+                    char char1 = validCharacters[i];
+                    for (int j = 0; j < validCharacters.length; j++) {
+                        char char2 = validCharacters[j];
+                        for (int j2 = 0; j2 < validCharacters.length; j2++) {
+                            char char3 = validCharacters[j2];
+                            for (int k = 0; k < validCharacters.length; k++) {
+                                char char4 = validCharacters[k];
+                                crack += char1;
+                                crack += char2;
+                                crack += char3;
+                                crack += char4;
+
+                                // check length
+                                if (crack.length() == 4) {
+                                    System.out.println(crack + "\n"); // testing
+                                    // check if match password
+                                    if (crack.equals(password)) {
+                                        System.out.println("Found: " + password + " == " + crack);
+                                        found = true;
+                                        attempts.add(attempt);
+                                    } else {
+                                        attempt++;
+                                        crack = "";
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -68,7 +66,7 @@ public class CyberSecurityV1 {
         int max = attempts.get(0);
         int min = attempts.get(0);
         int sum = 0;
-
+        // sorting
         for (int i = 0; i < attempts.size(); i++) {
             if (attempts.get(i) > max) {
                 max = attempts.get(i);
@@ -78,12 +76,9 @@ public class CyberSecurityV1 {
             }
             sum += attempts.get(i);
         }
-
         // print the results
         System.out.println("The worst case scenario is: " + max);
         System.err.println("The best case scenario is: " + min);
         System.out.println("The average is: " + sum / attempts.size());
-
-        sc.close();
     }
 }
