@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 public class CyberSecurityV1 {
@@ -9,8 +8,10 @@ public class CyberSecurityV1 {
         int passwordLength = 4;
         int howManyPasswords = 1000;
         int attempt;
+        int min = 999999999;
+        int max = 0;
+        int sum = 0;
         char[] validCharacters = { 'A', 'B', 'C', 'a', 'b', 'c', '0', '1', '2', '!' };
-        ArrayList<Integer> attempts = new ArrayList<>();
 
         // password gen and crack loop
         for (int h = 0; h < howManyPasswords; h++) {
@@ -43,12 +44,19 @@ public class CyberSecurityV1 {
 
                             // check length
                             if (crack.length() == 4) {
-                                // System.out.println(crack + "\n"); // testing
                                 // check if match password
                                 if (crack.equals(password)) {
                                     System.out.println("Found: " + password + " == " + crack);
+                                    System.out.println(attempt);
+                                    if (attempt > max) {
+                                        max = attempt;
+                                    }
+                                    if (attempt < min) {
+                                        min = attempt;
+                                    }
+                                    sum += attempt;
                                     found = true;
-                                    attempts.add(attempt);
+                                    attempt = 0;
                                 } else {
                                     attempt++;
                                     crack = "";
@@ -59,24 +67,10 @@ public class CyberSecurityV1 {
                 }
             }
         }
-
-        // the statistics
-        int max = attempts.get(0);
-        int min = attempts.get(0);
-        int sum = 0;
-        // sorting
-        for (int i = 0; i < attempts.size(); i++) {
-            if (attempts.get(i) > max) {
-                max = attempts.get(i);
-            }
-            if (attempts.get(i) < min) {
-                min = attempts.get(i);
-            }
-            sum += attempts.get(i);
-        }
         // print the results
+        System.out.println(sum);
         System.out.println("The worst case scenario is: " + max);
         System.err.println("The best case scenario is: " + min);
-        System.out.println("The average is: " + sum / attempts.size());
+        System.out.println("The average is: " + sum / howManyPasswords);
     }
 }
