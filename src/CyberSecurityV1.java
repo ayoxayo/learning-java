@@ -10,7 +10,7 @@ public class CyberSecurityV1 {
         int attempt;
         int min = 999999999;
         int max = 0;
-        int sum = 0;
+        double sum = 0;
         char[] validCharacters = { 'A', 'B', 'C', 'a', 'b', 'c', '0', '1', '2', '!' };
 
         // password gen and crack loop
