@@ -55,7 +55,7 @@ public class KinoVerwaltungV2 {
                         }
                         System.out.printf(
                                 "%-3s %-10s %-13s %-7s %-8s %-15s\n",
-                                (Object[]) filmData[i]); // (Object[])
+                                (Object[]) filmData[i]); // (Object[]) for happy compiler!
                     }
                     System.out.println("--------------------------------------------------------------");
 
