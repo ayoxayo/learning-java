@@ -61,8 +61,6 @@ public class ZahlenRatenV1 {
                         } while (userGuess < 0 || userGuess > 100);
                         userGuesses.add(userGuess);
                         int difference = userGuess - randomNumber;
-                        // System.out.println(randomNumber); testing
-                        // System.out.println(difference);
                         if (userChance == randomNumber) {
                             System.out.println("You guessed correct! Congratulations");
                         } else if (difference <= 3 && difference >= -3) {
@@ -82,9 +80,62 @@ public class ZahlenRatenV1 {
                     System.out.println("Too bad, you lost!");
                     break;
                 case 3:
+                    boolean win = false;
+                    boolean userTurn = r.nextBoolean();
+                    boolean firstTurn = true;
+                    int aiGuess = -1;
+                    int currentGuess = -1;
+                    boolean lastFeedback = true; // true guess too small / false guess too big
+                    ArrayList<Integer> pastGuesses = new ArrayList<>();
 
-                    break;
-                case 0:
+                    while (!win) {
+                        if (userTurn) {
+                            if (firstTurn) {
+                                System.out.println("You begin!");
+                            }
+                            System.out.println("It's your turn!");
+                            do {
+                                System.out.println("Guess the number!");
+                                System.out.println(pastGuesses);
+                                userGuess = sc.nextInt();
+                            } while (userGuess < 0 || userGuess > 100);
+                            pastGuesses.add(userGuess);
+                            firstTurn = false;
+                            userTurn = false;
+                            currentGuess = userGuess;
+                        } else {
+                            if (firstTurn) {
+                                System.out.println("AI begins!");
+                                aiGuess = 50;
+                            } else if (lastFeedback) {
+                                aiGuess = pastGuesses.get(pastGuesses.size() - 1)
+                                        + pastGuesses.get(pastGuesses.size() - 1) / 2;
+                            } else {
+                                aiGuess = pastGuesses.get(pastGuesses.size() - 1)
+                                        - pastGuesses.get(pastGuesses.size() - 1) / 2;
+                            }
+                            System.out.println("It's AIs turn!");
+                            pastGuesses.add(aiGuess);
+                            firstTurn = false;
+                            userTurn = true;
+                            currentGuess = aiGuess;
+                            System.out.println(aiGuess);
+                        }
+                        if (currentGuess > randomNumber) {
+                            System.out.println("The number is smaller than the guess!");
+                            lastFeedback = false;
+                        } else if (currentGuess < randomNumber) {
+                            System.out.println("The number is bigger than the guess!");
+                            lastFeedback = true;
+                        }
+                        if (aiGuess == randomNumber) {
+                            System.out.println("AI won!");
+                            win = true;
+                        } else if (userGuess == randomNumber) {
+                            System.out.println("You won! Congrats!");
+                            win = true;
+                        }
+                    }
                     break;
             }
         }
