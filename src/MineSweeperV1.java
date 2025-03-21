@@ -27,6 +27,9 @@ public class MineSweeperV1 {
 
         // game loop
         while (!dead) {
+            // stats maths
+            safeFields = map.length * 10 - mineCount;
+            clearPercentage = clearedFields / safeFields * 100;
             // printer
             System.out.printf("%s \n", "   A  B  C  D  E  F  G  H  I  J");
             for (int i = 0; i < map.length; i++) {
@@ -44,9 +47,6 @@ public class MineSweeperV1 {
                 }
                 System.out.println();
             }
-            // stats maths
-            safeFields = map.length * 10 - mineCount;
-            clearPercentage = clearedFields / safeFields * 100;
             // stats print
             System.out.printf("%s %d %s %.0f (%.2f%s) %s \n%s %d %s \n", "You have cleared", clearedFields, "/",
                     safeFields, clearPercentage, "%",
@@ -73,6 +73,9 @@ public class MineSweeperV1 {
             }
         }
         // game over print with statistics and map
+        // stats maths
+        safeFields = map.length * 10 - mineCount;
+        clearPercentage = clearedFields / safeFields * 100;
         System.out.printf("%s \n", "   A  B  C  D  E  F  G  H  I  J");
         for (int i = 0; i < map.length; i++) {
             System.out.print(i + " ");
