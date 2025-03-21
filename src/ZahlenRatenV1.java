@@ -17,7 +17,7 @@ public class ZahlenRatenV1 {
             } while (menuOption < 0 || menuOption > 3);
 
             int randomNumber = r.nextInt(0, 101);
-            int userChance = 9;
+            int userChance = 100;
             int userGuess = 0;
             boolean yes = true;
             ArrayList<Integer> userGuesses = new ArrayList<>();
@@ -60,35 +60,29 @@ public class ZahlenRatenV1 {
                             userGuess = sc.nextInt();
                         } while (userGuess < 0 || userGuess > 100);
                         userGuesses.add(userGuess);
-                        if (userGuess == randomNumber + 3 || userGuess == randomNumber - 3) {
+                        int difference = userGuess - randomNumber;
+                        // System.out.println(randomNumber); testing
+                        // System.out.println(difference);
+                        if (userChance == randomNumber) {
+                            System.out.println("You guessed correct! Congratulations");
+                        } else if (difference <= 3 && difference >= -3) {
                             System.out.println("Almost there! You're 1-3 off!");
                             userChance--;
-                        } else if (userGuess == randomNumber + 3 || userGuess == randomNumber - 3) {
+                        } else if (difference <= 10 && difference >= -10) {
                             System.out.println("Relatively close! You're 4-10 off");
                             userChance--;
-                        } else if (userGuess == randomNumber + 3 || userGuess == randomNumber - 3) {
+                        } else if (difference <= 20 && difference >= -20) {
                             System.out.println("Not so far away! You're 10-20 off");
                             userChance--;
-                        } else if (userGuess == randomNumber + 3 || userGuess == randomNumber - 3) {
+                        } else if (difference > 20 || difference < -20) {
                             System.out.println("Far away, you're more than 20 off!");
-                            userChance--;
-                        } else if (userChance == randomNumber) {
-                            System.out.printf("%s\n%s\n%s\n", "You guessed correct! Congratulations",
-                                    "Do you want to try again? (Press 1 for Yes; 0 for No)", "Yes/No");
-                            int tryAgain = sc.nextInt();
-                            if (tryAgain == 0) {
-                                yes = false;
-                            } else {
-                                randomNumber = r.nextInt(0, 101);
-                                userChance = 9;
-                                userGuesses.clear();
-                            }
-                        } else {
                             userChance--;
                         }
                     }
+                    System.out.println("Too bad, you lost!");
                     break;
                 case 3:
+
                     break;
                 case 0:
                     break;
