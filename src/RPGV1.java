@@ -45,7 +45,6 @@ public class RPGV1 {
             if (choices[currentChoice].length == 5) {
                 System.out.printf("%s\n%s\n", choices[currentChoice][3], lines);
                 currentChoice = Integer.parseInt(choices[currentChoice][4]);
-
             }
         }
         sc.close(); // for happy IDE
