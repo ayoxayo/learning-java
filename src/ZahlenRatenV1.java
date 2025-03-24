@@ -99,7 +99,6 @@ public class ZahlenRatenV1 {
                                 System.out.println("You won. Congrats!");
                                 win = true;
                             }
-                            turn = false;
                         } else {
                             guess = (min + max) / 2;
                             pastGuesses.add(guess);
@@ -108,7 +107,6 @@ public class ZahlenRatenV1 {
                                 System.out.println("AI won. You lost!");
                                 win = true;
                             }
-                            turn = true;
                         }
                         if (guess > randomNumber) {
                             System.out.println("The number is smaller than the guess!");
@@ -119,6 +117,7 @@ public class ZahlenRatenV1 {
                             if (guess >= min)
                                 min = guess + 1;
                         }
+                        turn ^= true;
                     }
                     break;
             }
