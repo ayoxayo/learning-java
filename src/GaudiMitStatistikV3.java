@@ -43,21 +43,20 @@ public class GaudiMitStatistikV3 {
             if (sortedNumbers[i] == sortedNumbers[i + 1]) {
                 count++;
             } else {
-                if (count > maxCount) {
-                    maxCount = count;
-                    mode = sortedNumbers[i];
-                }
                 count = 1;
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                mode = sortedNumbers[i];
             }
         }
         // MAD
-        int madSum = 0;
+        double madSum = 0;
         for (int i = 0; i < sortedNumbers.length; i++) {
             double tempMean = Math.abs(sortedNumbers[i] - mean);
             madSum += tempMean;
         }
         double mad = (double) madSum / sortedNumbers.length;
-        // /maths
         // printer
         System.out.println("Original dataset:");
         for (int i = 0; i < randomNumbers.length; i++) {
