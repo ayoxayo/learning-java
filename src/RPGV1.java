@@ -41,17 +41,11 @@ public class RPGV1 {
                 currentChoice = sc.nextInt();
             } while (!viableChoices.contains(currentChoice));
             viableChoices.clear();
-            if (currentChoice == 2) {
+            // "jumps"
+            if (choices[currentChoice].length == 5) {
                 System.out.printf("%s\n%s\n", choices[currentChoice][3], lines);
-                currentChoice = 0;
-            }
-            if (currentChoice == 3) {
-                System.out.printf("%s\n%s\n", choices[currentChoice][3], lines);
-                currentChoice = 1;
-            }
-            if (currentChoice == 4) {
-                System.out.printf("%s\n%s\n", choices[currentChoice][3], lines);
-                currentChoice = 0;
+                currentChoice = Integer.parseInt(choices[currentChoice][4]);
+
             }
         }
         sc.close(); // for happy IDE
