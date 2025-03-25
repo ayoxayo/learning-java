@@ -72,35 +72,27 @@ public class MineSweeperV2 {
                 col = userPosition.charAt(0) - 'A';
 
                 int offset = 0;
-                boolean check = false; // enable clearing loop
                 if (map[row][col] == 0) {
                     dead = true;
                     map[row][col] = 42;
                 } else if (map[row][col] == -3) {
                     offset = 2;
-                    check = true;
                 } else if (map[row][col] == -2) {
                     offset = 1;
-                    check = true;
-                } else { // -1 case
-                    map[row][col] = 45;
-                    clearedFields++;
                 }
-                if (check) {
-                    for (int y = row - offset; y <= row + offset && y < map.length; y++) {
-                        if (y < 0) {
-                            y = 0;
+                for (int y = row - offset; y <= row + offset && y < map.length; y++) {
+                    if (y < 0) {
+                        y = 0;
+                    }
+                    for (int x = col - offset; x <= col + offset && x < map.length; x++) {
+                        if (x < 0) {
+                            x = 0;
                         }
-                        for (int x = col - offset; x <= col + offset && x < map.length; x++) {
-                            if (x < 0) {
-                                x = 0;
-                            }
-                            if (map[y][x] == 0) {
-                                map[y][x] = 42;
-                            } else if (map[y][x] < 0) {
-                                map[y][x] = 45;
-                                clearedFields++;
-                            }
+                        if (map[y][x] == 0) {
+                            map[y][x] = 42;
+                        } else if (map[y][x] < 0) {
+                            map[y][x] = 45;
+                            clearedFields++;
                         }
                     }
                 }
