@@ -137,7 +137,7 @@ public class ZahlenRatenV2 {
                         guessPool.add(i);
                     }
                     randomNumber = r.nextInt(0, 101);
-                    turn = true;// r.nextBoolean();
+                    turn = r.nextBoolean();
                     win = false;
                     int range = -1;
                     while (!win) {
@@ -153,17 +153,14 @@ public class ZahlenRatenV2 {
                                 System.out.println("You won. Congrats!");
                                 win = true;
                             }
-                            // } else { // ai
-                            // // ai logic
-
-                            // guess = guessPool.get(guessPool.size() / 2);
-                            // pastGuesses.add(guess);
-                            // // sout stuff
-                            // System.out.printf("%s \n%d\n", "It's AIs turn!\nAI guessed:", guess);
-                            // if (guess == randomNumber) { // ai win condition
-                            // System.out.println("AI won. You lost!");
-                            // win = true;
-                            // }
+                        } else { // ai
+                            guess = r.nextInt(guessPool.getFirst(), guessPool.getLast());
+                            pastGuesses.add(guess);
+                            System.out.printf("%s \n%d\n", "It's AIs turn!\nAI guessed:", guess); // ai win condition
+                            if (guess == randomNumber) { // ai win condition
+                                System.out.println("AI won. You lost!");
+                                win = true;
+                            }
                         }
                         difference = Math.abs(guess - randomNumber);
                         if (difference <= 3) {
@@ -172,7 +169,7 @@ public class ZahlenRatenV2 {
                             for (int i = 0; i < guess - range; i++) {
                                 guessPool.remove(Integer.valueOf(i));
                             }
-                            for (int i = guess + range; i < guessPool.size(); i++) {
+                            for (int i = guess + range; i <= guessPool.getLast(); i++) {
                                 guessPool.remove(Integer.valueOf(i));
                             }
                         } else if (difference <= 10) { // mid
@@ -180,7 +177,7 @@ public class ZahlenRatenV2 {
                             for (int i = 0; i < guess - 10; i++) {
                                 guessPool.remove(Integer.valueOf(i));
                             }
-                            for (int i = guess + 10; i < guessPool.size(); i++) {
+                            for (int i = guess + 10; i <= guessPool.getLast(); i++) {
                                 guessPool.remove(Integer.valueOf(i));
                             }
                             range = 4;
@@ -193,7 +190,7 @@ public class ZahlenRatenV2 {
                             for (int i = 0; i < guess - range * 2; i++) {
                                 guessPool.remove(Integer.valueOf(i));
                             }
-                            for (int i = guess + range * 2; i < guessPool.size(); i++) {
+                            for (int i = guess + range * 2; i <= guessPool.getLast(); i++) {
                                 guessPool.remove(Integer.valueOf(i));
                             }
                             range = 10;
@@ -207,8 +204,7 @@ public class ZahlenRatenV2 {
                                 guessPool.remove(Integer.valueOf(guess - range + i));
                             }
                         }
-                        // del loop
-                        // turn ^= true;
+                        turn ^= true;
                         System.out.println(guessPool);
                     }
                     pastGuesses.clear();
