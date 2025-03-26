@@ -133,13 +133,13 @@ public class ZahlenRatenV2 {
                     break;
                 case 4:
                     ArrayList<Integer> guessPool = new ArrayList<>();
-                    for (int i = 0; i < 100; i++) {
+                    for (int i = 0; i <= 100; i++) {
                         guessPool.add(i);
                     }
                     randomNumber = r.nextInt(0, 101);
                     turn = r.nextBoolean();
                     win = false;
-                    int range = -1;
+                    int range;
                     while (!win) {
                         if (turn) { // user
                             System.out.println("It's your turn!");
@@ -154,9 +154,9 @@ public class ZahlenRatenV2 {
                                 win = true;
                             }
                         } else { // ai
-                            guess = r.nextInt(guessPool.getFirst(), guessPool.getLast());
+                            guess = r.nextInt(guessPool.getFirst(), (guessPool.getLast() + 1));
                             pastGuesses.add(guess);
-                            System.out.printf("%s \n%d\n", "It's AIs turn!\nAI guessed:", guess); // ai win condition
+                            System.out.printf("%s \n%d\n", "It's AIs turn!\nAI guessed:", guess);
                             if (guess == randomNumber) { // ai win condition
                                 System.out.println("AI won. You lost!");
                                 win = true;
