@@ -106,8 +106,8 @@ public class RPGV2 {
             if (currentChoice == 6) {
                 System.out.printf("%s %d %s %d %s", "The monster has", mLife, "HP, and you have", pLife, "HP.");
             } else if (currentChoice == 7) {
-                pDamage = r.nextInt(1, pAttack);
-                mDamage = r.nextInt(1, mAttack);
+                pDamage = r.nextInt(0, pAttack);
+                mDamage = r.nextInt(0, mAttack);
                 mLife -= pDamage;
                 if (mLife > 0) {
                     pLife -= mDamage;
